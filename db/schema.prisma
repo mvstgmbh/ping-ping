@@ -31,6 +31,8 @@ model Match {
   playerBId Int
   playerA   Player   @relation("matchesAsPlayerA",fields: [playerAId], references: [id])
   playerB   Player   @relation("matchesAsPlayerB",fields: [playerBId], references: [id])
+  scorePlayerA Int
+  scorePlayerB Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
