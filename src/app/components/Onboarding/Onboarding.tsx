@@ -1,16 +1,13 @@
 import Image from 'next/image';
-import { useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
-import frame1Img from '@public/frame-1.png';
-import frame2Img from '@public/frame-2.png';
-import frame3Img from '@public/frame-3.png';
+import frame1Img from '@public/frame-1.svg';
+import frame2Img from '@public/frame-2.svg';
+import frame3Img from '@public/frame-3.svg';
 
 export const Onboarding = () => {
-  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
-
   const frames = [
     {
       image: frame1Img,
