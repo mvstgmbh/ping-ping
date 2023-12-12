@@ -44,3 +44,7 @@ body {
   width: 455px !important;
   height: 455px !important;
 }
+
+.dvh {
+  height: 100dvh;
+}
