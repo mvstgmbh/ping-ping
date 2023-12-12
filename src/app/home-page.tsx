@@ -1,6 +1,7 @@
 'use client';
 
 import { Onboarding } from '@/app/components/organisms/Onboarding/Onboarding';
+import { withNavbar } from './components/hoc/withNavbar';
 import { RecordMatch } from './components/organisms/RecordMatch/RecordMatch';
 import { StorageKeys, useLocalStorage } from './hooks/useLocalStorage';
 
@@ -13,5 +14,5 @@ export default function HomePage() {
     return <Onboarding />;
   }
 
-  return <RecordMatch />;
+  return withNavbar(<RecordMatch />);
 }
