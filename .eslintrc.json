@@ -1,3 +1,311 @@
 {
-  "extends": "next/core-web-vitals"
+  "plugins": ["prettier"],
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:react-hooks/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-shadow": "warn",
+    "no-console": "error",
+    "no-unsafe-negation": "error",
+    "no-alert": "error",
+    "camelcase": "warn",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "no-unused-vars": [
+      "error",
+      {
+        "args": "none"
+      }
+    ],
+    "comma-dangle": "off",
+    "array-bracket-newline": ["off", "consistent"],
+    "array-element-newline": [
+      "off",
+      {
+        "multiline": true,
+        "minItems": 3
+      }
+    ],
+    "capitalized-comments": [
+      "off",
+      "never",
+      {
+        "line": {
+          "ignorePattern": ".*",
+          "ignoreInlineComments": true,
+          "ignoreConsecutiveComments": true
+        },
+        "block": {
+          "ignorePattern": ".*",
+          "ignoreInlineComments": true,
+          "ignoreConsecutiveComments": true
+        }
+      }
+    ],
+    "consistent-this": "off",
+    "func-name-matching": [
+      "off",
+      "always",
+      {
+        "includeCommonJSModuleExports": false
+      }
+    ],
+    "func-style": ["off", "expression"],
+    "id-blacklist": "off",
+    "id-length": "off",
+    "id-match": "off",
+    "import/no-named-as-default-member": "off",
+    "import/no-unused-modules": [
+      1,
+      {
+        "unusedExports": true,
+        "ignoreExports": [
+          "src/pages/",
+          "src/components/organisms/index.ts",
+          "src/components/molecules/index.ts",
+          "src/components/atoms/index.ts",
+          "src/components/temporary/index.ts"
+        ]
+      }
+    ],
+    "jsx-quotes": ["off", "prefer-double"],
+    "line-comment-position": [
+      "off",
+      {
+        "position": "above",
+        "ignorePattern": "",
+        "applyDefaultPatterns": true
+      }
+    ],
+    "linebreak-style": "off",
+    "lines-between-class-members": [
+      "error",
+      "always",
+      {
+        "exceptAfterSingleLine": false
+      }
+    ],
+    "lines-around-comment": "off",
+    "lines-around-directive": [
+      "error",
+      {
+        "before": "always",
+        "after": "always"
+      }
+    ],
+    "max-depth": ["off", 4],
+    "max-len": [
+      "error",
+      100,
+      2,
+      {
+        "ignoreUrls": true,
+        "ignoreComments": false,
+        "ignoreRegExpLiterals": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
+      }
+    ],
+    "max-lines": [
+      "off",
+      {
+        "max": 300,
+        "skipBlankLines": true,
+        "skipComments": true
+      }
+    ],
+    "max-lines-per-function": [
+      "off",
+      {
+        "max": 50,
+        "skipBlankLines": true,
+        "skipComments": true,
+        "IIFEs": true
+      }
+    ],
+    "max-nested-callbacks": "off",
+    "max-params": ["off", 3],
+    "max-statements": ["off", 10],
+    "max-statements-per-line": [
+      "off",
+      {
+        "max": 1
+      }
+    ],
+    "multiline-comment-style": ["off", "starred-block"],
+    "multiline-ternary": ["off", "never"],
+    "new-cap": [
+      "error",
+      {
+        "newIsCap": true,
+        "newIsCapExceptions": [],
+        "capIsNew": false,
+        "capIsNewExceptions": ["Immutable.Map", "Immutable.Set", "Immutable.List"]
+      }
+    ],
+    "newline-after-var": "off",
+    "newline-before-return": "off",
+    "no-array-constructor": "error",
+    "no-bitwise": "error",
+    "no-continue": "error",
+    "no-inline-comments": "off",
+    "no-lonely-if": "error",
+    "no-mixed-operators": [
+      "error",
+      {
+        "groups": [
+          ["%", "**"],
+          ["%", "+"],
+          ["%", "-"],
+          ["%", "*"],
+          ["%", "/"],
+          ["**", "+"],
+          ["**", "-"],
+          ["**", "*"],
+          ["**", "/"],
+          ["&", "|", "^", "~", "<<", ">>", ">>>"],
+          ["==", "!=", "===", "!==", ">", ">=", "<", "<="],
+          ["&&", "||"],
+          ["in", "instanceof"]
+        ],
+        "allowSamePrecedence": false
+      }
+    ],
+    "no-multi-assign": ["error"],
+    "no-negated-condition": "off",
+    "no-nested-ternary": "error",
+    "no-new-object": "error",
+    "no-plusplus": [
+      "error",
+      {
+        "allowForLoopAfterthoughts": true
+      }
+    ],
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "ForInStatement",
+        "message": "for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array."
+      },
+      {
+        "selector": "ForOfStatement",
+        "message": "iterators/generators require regenerator-runtime, which is too heavyweight for this guide to allow them. Separately, loops should be avoided in favor of array iterations."
+      },
+      {
+        "selector": "LabeledStatement",
+        "message": "Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand."
+      },
+      {
+        "selector": "WithStatement",
+        "message": "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
+      }
+    ],
+    "no-ternary": "off",
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allow": [],
+        "allowAfterThis": false,
+        "allowAfterSuper": false,
+        "enforceInMethodNames": true
+      }
+    ],
+    "no-unneeded-ternary": [
+      "error",
+      {
+        "defaultAssignment": false
+      }
+    ],
+    "operator-assignment": ["error", "always"],
+    "padding-line-between-statements": "off",
+    "prefer-object-spread": "off",
+    "spaced-comment": [
+      "error",
+      "always",
+      {
+        "line": {
+          "exceptions": ["-", "+"],
+          "markers": ["=", "!"]
+        },
+        "block": {
+          "exceptions": ["-", "+"],
+          "markers": ["=", "!"],
+          "balanced": true
+        }
+      }
+    ],
+    "wrap-regex": "off",
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "pathGroups": [
+          {
+            "pattern": "@components/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "@atoms/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "@molecules/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "@redux/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "@utils/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "@api/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "@server/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "@config/**",
+            "group": "internal"
+          }
+        ]
+      }
+    ]
+  },
+  "overrides": [
+    // Lint rules for jest test files
+    {
+      "files": ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(test).[jt]s?(x)"],
+      // Exclude plawright files from linting
+      "excludedFiles": "**/?(*.)+(spec).[jt]s?(x)",
+      "extends": ["plugin:jest/all", "plugin:testing-library/react"]
+    }
+  ]
 }

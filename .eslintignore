@@ -1,0 +1,11 @@
+node_modules
+
+# next.js
+**/.next/**
+next.d.ts
+
+# jest
+jest.config.js
+
+# production
+/storybook-static

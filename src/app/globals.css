@@ -18,10 +18,29 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
     rgb(var(--background-start-rgb));
+}
+
+.slick-slider {
+  height: 100%;
+}
+.slick-list {
+  height: 100%;
+}
+.slick-track {
+  height: 100%;
+}
+.slick-slide {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.carousel-image-container {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 455px !important;
+  height: 455px !important;
 }
