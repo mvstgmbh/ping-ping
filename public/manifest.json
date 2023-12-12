@@ -1,6 +1,6 @@
 {
   "name": "Ping Ping",
-  "short_name": "PWAPingPing",
+  "short_name": "PingPing",
   "description": "A Progressive Web App built with Next.js",
   "start_url": "/",
   "display": "standalone",
