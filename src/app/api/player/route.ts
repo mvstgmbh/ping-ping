@@ -4,7 +4,7 @@ import prisma from '../../../../db/prismaClient';
 export async function POST(req: NextRequest) {
   const body = (await req.json()) as { username: string; email: string; avatar: string };
 
-  if (!body.username || !body.email || !body.avatar) {
+  if (!body.username || !body.email || !body.email.endsWith('@mvst.co') || !body.avatar) {
     return new Response(JSON.stringify({ message: 'invalid body' }), { status: 400 });
   }
 
