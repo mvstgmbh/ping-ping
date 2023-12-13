@@ -16,7 +16,7 @@ export const PlayerNameWithPicture = ({
 }: Props) => {
   return (
     <button className="flex flex-col justify-center items-center gap-4" onClick={onClick}>
-      <span>{playerName || playerNumber}</span>
+      <span className="text-black">{playerName || playerNumber}</span>
       <div className="border-[3px] border-black w-[108px] h-[108px] rounded-full bg-white flex justify-center items-center">
         <Image src={playerAvatar || Plus} alt="player avatar" />
       </div>

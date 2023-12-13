@@ -1,5 +1,5 @@
 import { HeaderWithBackIcon } from '@molecules/HeaderWithBackIcon';
-import { PlayerNameWithPicture } from '../../../molecules/PlayerNameWithPicture';
+import { PlayerNameWithPicture } from '@molecules/PlayerNameWithPicture';
 import { ChoosePlayerProps, Steps } from '../RecordMatch';
 
 type Props = {

@@ -62,6 +62,7 @@ export const RecordMatch = () => {
             onContinue={handleNextStep}
             onBack={handleBackStep}
             headerLabel={'Player 1'}
+            hasSelectedBothPlayers={!!playerOne?.playerName && !!playerTwo?.playerName}
           />
         );
       case Steps.SearchPlayerTwo:
@@ -71,6 +72,7 @@ export const RecordMatch = () => {
             onContinue={handleNextStep}
             onBack={handleBackStep}
             headerLabel={'Player 2'}
+            hasSelectedBothPlayers={!!playerOne?.playerName && !!playerTwo?.playerName}
           />
         );
 

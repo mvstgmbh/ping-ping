@@ -8,7 +8,7 @@ type Props = {
 
 export const HeaderWithBackIcon = ({ label, onClickBack }: Props) => {
   return (
-    <div className="flex flex-row mt-5 sticky top-0">
+    <div className="flex flex-row mt-5 sticky top-0" id={'header'}>
       <button className="p-2" onClick={onClickBack}>
         <Image src={ChevronLeft} alt={'back'} />
       </button>
