@@ -1,11 +1,14 @@
+import Cookie from 'js-cookie';
 import Image from 'next/image';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
+import { PrimaryButton, SecondaryButton } from '@/app/components/atoms/index';
 import frame1Img from '@public/frame-1.svg';
 import frame2Img from '@public/frame-2.svg';
 import frame3Img from '@public/frame-3.svg';
+import { CookieKeys } from '../../../enums/cookie.enums';
 
 export const Onboarding = () => {
   const frames = [
@@ -29,6 +32,7 @@ export const Onboarding = () => {
 
   const handleStart = () => {
     console.log("let's ping");
+    Cookie.set(CookieKeys.OnboardingComplete, 'true');
   };
 
   const sliderSettings = {
@@ -50,18 +54,8 @@ export const Onboarding = () => {
         </Slider>
       </div>
       <div className="flex flex-col gap-4 w-full p-4">
-        <button
-          className="text-[#0D0D0D] font-bold py-[12px] px-[24px] border border-[#243c5a] rounded-2xl"
-          onClick={handleCreateProfile}
-        >
-          Create Profile
-        </button>
-        <button
-          className=" bg-[#0D0D0D] text-white font-bold py-[12px] px-[24px] border border-[#243c5a] rounded-2xl"
-          onClick={handleStart}
-        >
-          Let's Ping
-        </button>
+        <SecondaryButton label={'Create new player'} onClick={handleCreateProfile} />
+        <PrimaryButton label={"Let's Ping"} onClick={handleStart} />
       </div>
     </div>
   );
