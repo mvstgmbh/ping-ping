@@ -7,7 +7,6 @@ import { CookieKeys } from './enums/cookie.enums';
 
 export default function HomePage() {
   const hasCompletedOnboarding = JSON.parse(Cookie.get(CookieKeys.OnboardingComplete) || 'false');
-
   // TODO: find a better solution for rendering this so there's no flash of content
 
   if (hasCompletedOnboarding === null || hasCompletedOnboarding === undefined) {
