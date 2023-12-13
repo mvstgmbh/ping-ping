@@ -1,6 +1,17 @@
 import { type NextRequest } from 'next/server';
 import prisma from '../../../../db/prismaClient';
 
+export async function GET() {
+  // get all players from db
+  const players = await prisma.player.findMany({
+    include: {
+      matchesAsPlayerA: true,
+      matchesAsPlayerB: true,
+    },
+  });
+  return new Response(JSON.stringify(players), { status: 200 });
+}
+
 export async function POST(req: NextRequest) {
   const body = (await req.json()) as { username: string; email: string; avatar: string };
 

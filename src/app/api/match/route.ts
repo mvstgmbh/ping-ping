@@ -77,7 +77,6 @@ export async function POST(req: NextRequest) {
     data: updatedPlayerB,
   });
 
-  // save match
   await prisma.match.create({
     data: {
       playerAId: body.playerAId,
@@ -87,7 +86,7 @@ export async function POST(req: NextRequest) {
     },
   });
 
-  return new Response(JSON.stringify({ message: 'ok', updatedPlayerA, updatedPlayerB }), {
+  return new Response(JSON.stringify({ message: 'ok' }), {
     status: 201,
   });
 }
