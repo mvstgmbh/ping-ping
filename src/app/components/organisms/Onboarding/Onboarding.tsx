@@ -1,3 +1,4 @@
+import Cookie from 'js-cookie';
 import Image from 'next/image';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
@@ -30,6 +31,7 @@ export const Onboarding = () => {
 
   const handleStart = () => {
     console.log("let's ping");
+    Cookie.set('onboardingComplete', 'true');
   };
 
   const sliderSettings = {
