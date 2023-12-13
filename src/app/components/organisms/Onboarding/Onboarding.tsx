@@ -8,6 +8,7 @@ import { PrimaryButton, SecondaryButton } from '@/app/components/atoms/index';
 import frame1Img from '@public/frame-1.svg';
 import frame2Img from '@public/frame-2.svg';
 import frame3Img from '@public/frame-3.svg';
+import { CookieKeys } from '../../../enums/cookie.enums';
 
 export const Onboarding = () => {
   const frames = [
@@ -31,7 +32,7 @@ export const Onboarding = () => {
 
   const handleStart = () => {
     console.log("let's ping");
-    Cookie.set('onboardingComplete', 'true');
+    Cookie.set(CookieKeys.OnboardingComplete, 'true');
   };
 
   const sliderSettings = {

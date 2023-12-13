@@ -8,9 +8,14 @@ import { CookieKeys } from './enums/cookie.enums';
 export default function HomePage() {
   const hasCompletedOnboarding = JSON.parse(Cookie.get(CookieKeys.OnboardingComplete) || 'false');
 
-  if (!hasCompletedOnboarding) {
-    return <Onboarding />;
+  // TODO: find a better solution for rendering this so there's no flash of content
+
+  if (hasCompletedOnboarding === null || hasCompletedOnboarding === undefined) {
+    return null;
   }
 
-  return withNavbar(<RecordMatch />);
+  if (hasCompletedOnboarding) {
+    return withNavbar(<RecordMatch />);
+  }
+  return <Onboarding />;
 }
