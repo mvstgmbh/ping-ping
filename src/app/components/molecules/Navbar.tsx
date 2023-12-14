@@ -4,8 +4,8 @@ import RankingSelected from '@public/ranking-selected.svg';
 import Ranking from '@public/ranking.svg';
 import RecordSelected from '@public/record-selected.svg';
 import Record from '@public/record.svg';
-import UserSelected from '@public/user-selected.svg';
-import User from '@public/user.svg';
+import RocketSelected from '@public/rocket-launch-selected.svg';
+import Rocket from '@public/rocket-launch.svg';
 import { usePathname, useRouter } from 'next/navigation';
 
 export const Navbar = () => {
@@ -26,7 +26,7 @@ export const Navbar = () => {
       label: 'Top Players',
     },
     {
-      svg: pathname === '/streaks' ? UserSelected : User,
+      svg: pathname === '/streaks' ? RocketSelected : Rocket,
       isSelected: pathname === '/streaks',
       path: '/streaks',
       label: 'Win Streaks',
