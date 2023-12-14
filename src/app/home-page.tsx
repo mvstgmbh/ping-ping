@@ -16,5 +16,7 @@ export default function HomePage() {
   if (hasCompletedOnboarding) {
     return withNavbar(<RecordMatch />);
   }
-  return <Onboarding />;
+  if (!hasCompletedOnboarding) {
+    return <Onboarding />;
+  }
 }
