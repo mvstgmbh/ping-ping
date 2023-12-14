@@ -31,6 +31,9 @@ const Player = async ({ params }: { params: { id: string } }) => {
       matchesAsPlayerB: true,
     },
   })) as Player[];
+  if (!players) {
+    return null;
+  }
   const player = players.find((player) => player.id === id);
   const playerMatches = await prisma.match.findMany({
     where: {
