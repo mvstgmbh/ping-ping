@@ -1,7 +1,7 @@
 import { LoadingSpinner } from '@atoms/LoadingSpinner';
 import { PrimaryButton } from '@atoms/index';
 import { useGetHeaderAndFooterHeight } from '@hooks/useGetHeaderAndFooterHeight';
-import { HeaderWithBackIcon } from '@molecules/HeaderWithBackIcon';
+import { Header } from '@molecules/HeaderWithBackIcon';
 import { PlayerBanner } from '@molecules/PlayerBanner';
 import { SearchPlayerInput } from '@molecules/SearchPlayerInput';
 import { Player } from '@prisma/client';
@@ -59,7 +59,7 @@ export const SearchPlayer = ({
 
   return (
     <div className="h-full">
-      <HeaderWithBackIcon label={isPlayerOne ? 'Player 1' : 'Player 2'} onClickBack={onBack} />
+      <Header label={isPlayerOne ? 'Player 1' : 'Player 2'} onClickBack={onBack} />
       <div className={`h-full flex flex-col justify-between p-4 overflow-y-auto`}>
         <div>
           <SearchPlayerInput onChange={onChange} placeholder="Search Players" />
