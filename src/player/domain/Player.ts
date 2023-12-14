@@ -44,6 +44,10 @@ export const getFavouriteOpponent = (matches: Match[]) => {
 
 export const getRankingTopPlayers = (players: Player[]) =>
   players.sort((a, b) => {
+    // if player has no matches, put him at the bottom
+    if (a.matchesWon + a.matchesLost === 0) {
+      return 1;
+    }
     // check matches difference
     const aMatchesDiff = a.matchesWon - a.matchesLost;
     const bMatchesDiff = b.matchesWon - b.matchesLost;
