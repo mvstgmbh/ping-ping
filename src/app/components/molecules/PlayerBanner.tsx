@@ -1,4 +1,4 @@
-import { Player } from '@prisma/client';
+import { Player } from '../../../player/domain/Player';
 
 type Props = {
   selectable?: boolean;
@@ -19,20 +19,21 @@ export const PlayerBanner = ({
 }: Props) => {
   return (
     <div
-      className={`flex p-2 justify-between items-center border-b border-[#CFCFCF] bg-[#F3F3F3] ${
+      className={`flex p-4 justify-between items-center border-b border-[#CFCFCF] bg-[#F3F3F3] ${
         isFirst && 'rounded-t-2xl '
       }
       ${isLast && ' border-none rounded-b-2xl '}`}
+      onClick={() => onSelectPlayer(player)}
     >
       <div className="flex items-center gap-4">
         <div className="w-8 h-8 rounded-full bg-[#D9D9D9]" />
-        <span className="text-black">{player?.username}</span>
+        <span className="text-black font-medium">{player?.username}</span>
       </div>
 
       <div>
         {selectable ? (
           <div className="inline-flex items-center">
-            <label className="relative flex items-center p-3 rounded-full cursor-pointer">
+            <label className="relative flex items-center rounded-full cursor-pointer">
               <input
                 name="player"
                 type="radio"
@@ -57,7 +58,7 @@ export const PlayerBanner = ({
             </label>
           </div>
         ) : (
-          <span>rating</span>
+          <span className="text-sm font-normal">{player.winStreak} games</span>
         )}
       </div>
     </div>

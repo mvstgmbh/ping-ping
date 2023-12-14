@@ -2,9 +2,10 @@ import { MatchDTO } from '@api/match/route';
 import { PrimaryButton } from '@atoms/index';
 import { Header } from '@molecules/HeaderWithBackIcon';
 import { PlayerNameWithPicture } from '@molecules/PlayerNameWithPicture';
-import { Player } from '@prisma/client';
+
 import { apiService } from '@shared/infra/apiService';
 import { useState } from 'react';
+import { Player } from '../../../../../player/domain/Player';
 
 type Props = {
   onBack: () => void;

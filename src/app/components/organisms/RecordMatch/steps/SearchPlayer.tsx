@@ -4,9 +4,10 @@ import { useGetHeaderAndFooterHeight } from '@hooks/useGetHeaderAndFooterHeight'
 import { Header } from '@molecules/HeaderWithBackIcon';
 import { PlayerBanner } from '@molecules/PlayerBanner';
 import { SearchPlayerInput } from '@molecules/SearchPlayerInput';
-import { Player } from '@prisma/client';
+
 import { apiService } from '@shared/infra/apiService';
 import { useEffect, useState } from 'react';
+import { Player } from '../../../../../player/domain/Player';
 import { Steps } from '../RecordMatch';
 
 type Props = {

@@ -1,6 +1,7 @@
 import { Header } from '@molecules/HeaderWithBackIcon';
 import { PlayerNameWithPicture } from '@molecules/PlayerNameWithPicture';
-import { Player } from '@prisma/client';
+
+import { Player } from '../../../../../player/domain/Player';
 import { PrimaryButton } from '../../../atoms';
 import { Steps } from '../RecordMatch';
 

@@ -11,7 +11,7 @@ export const SearchPlayerInput = ({ onChange, placeholder }: Props) => {
   return (
     <div className=" border border-[#CFCFCF] rounded-lg p-2 w-full bg-[#F3F3F3] flex justify-center items-center">
       <input
-        className="border-none bg-transparent outline-none"
+        className="border-none bg-transparent outline-none text-black"
         placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
         style={{ flex: 1 }}

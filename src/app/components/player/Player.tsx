@@ -5,11 +5,12 @@ import {
   getRankingPositionString,
   getTotalMatches,
 } from '@/player/domain/Player';
+import prisma from '../../../../db/prismaClient';
+import { Match } from '../../../match/domain/Match';
+import { FadeInContainer } from '../ui/FadeInContainer';
 import { MainContainer } from '../ui/MainContainer';
 import { InfoCard } from './InfoCard';
 import { InfoRow } from './InfoRow';
-import prisma from '../../../../db/prismaClient';
-import { FadeInContainer } from '../ui/FadeInContainer';
 
 const PlayerDetail = async ({ id }: { id: number }) => {
   const players = (await prisma.player.findMany({
@@ -22,7 +23,7 @@ const PlayerDetail = async ({ id }: { id: number }) => {
     return null;
   }
   const player = players.find((player) => player.id === id);
-  const playerMatches = await prisma.match.findMany({
+  const playerMatches = (await prisma.match.findMany({
     where: {
       OR: [
         {
@@ -37,7 +38,7 @@ const PlayerDetail = async ({ id }: { id: number }) => {
       playerA: true,
       playerB: true,
     },
-  });
+  })) as Match[];
 
   if (!player) {
     return (

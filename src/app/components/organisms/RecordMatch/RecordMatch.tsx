@@ -1,6 +1,7 @@
 'use client';
-import { Player } from '@prisma/client';
+
 import { useState } from 'react';
+import { Player } from '../../../../player/domain/Player';
 import { ChoosePlayers } from './steps/ChoosePlayers';
 import { Record } from './steps/Record';
 import { SearchPlayer } from './steps/SearchPlayer';

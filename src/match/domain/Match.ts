@@ -1,4 +1,4 @@
-import { Player } from '@prisma/client';
+import { Player } from '../../player/domain/Player';
 
 export interface Match {
   id: number;
