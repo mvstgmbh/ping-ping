@@ -1,6 +1,6 @@
 'use client';
 
-import { Player } from '@/player/domain/Player';
+import { Player, getRankingTopPlayers } from '@/player/domain/Player';
 import { Header } from '../../molecules/HeaderWithBackIcon';
 import { SearchPlayerInput } from '../../molecules/SearchPlayerInput';
 import { FadeInContainer } from '../../ui/FadeInContainer';
@@ -8,6 +8,7 @@ import { MainContainer } from '../../ui/MainContainer';
 import clsx from 'clsx';
 
 export const TopPlayers = ({ players }: { players: Player[] }) => {
+  const topPlayers = getRankingTopPlayers(players);
   const onChange = (input: string) => {
     console.log(input);
   };
@@ -23,7 +24,7 @@ export const TopPlayers = ({ players }: { players: Player[] }) => {
 
       <FadeInContainer>
         <div className="mt-6 rounded-2xl bg-white">
-          {players.map((player, i) => {
+          {topPlayers.map((player, i) => {
             const isLast = i === players.length - 1;
             return <TopPlayer key={player.id} player={player} isLast={isLast} />;
           })}
@@ -45,9 +46,11 @@ export const TopPlayer = ({ player, isLast }: { player: Player; isLast: boolean 
         <p className="font-medium">{player.username}</p>
       </div>
       <p className="text-sm">
-        <span className="text-green-600">{`${player.matchesWon}W`}</span>
-        {` / `}
-        <span className="text-red-600">{`${player.matchesLost}L`}</span>
+        <span>{player.matchesWon}</span>
+        <span className="text-xs pl-[1px]">W</span>
+        <span>{` / `}</span>
+        <span className="text-red-600">{player.matchesLost}</span>
+        <span className="text-red-600 text-xs pl-[1px]">L</span>
       </p>
     </div>
   );

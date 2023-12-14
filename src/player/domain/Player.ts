@@ -42,7 +42,7 @@ export const getFavouriteOpponent = (matches: Match[]) => {
   return favouriteOpponent;
 };
 
-export const getRanking = (players: Player[]) =>
+export const getRankingTopPlayers = (players: Player[]) =>
   players.sort((a, b) => {
     // check matches difference
     const aMatchesDiff = a.matchesWon - a.matchesLost;
@@ -60,7 +60,7 @@ export const getRanking = (players: Player[]) =>
   });
 
 export const getRankingPosition = (playerId: number, players: Player[]) => {
-  const ranking = getRanking(players);
+  const ranking = getRankingTopPlayers(players);
 
   return ranking.findIndex((rankedPlayer) => rankedPlayer.id === playerId) + 1;
 };
