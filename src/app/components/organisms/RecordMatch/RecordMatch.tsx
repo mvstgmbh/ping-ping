@@ -37,6 +37,12 @@ export const RecordMatch = () => {
     }
   };
 
+  const reset = () => {
+    setPlayerOne(undefined);
+    setPlayerTwo(undefined);
+    setCurrentStep(Steps.Record);
+  };
+
   const renderStep = () => {
     switch (currentStep) {
       case Steps.Record:
@@ -48,7 +54,7 @@ export const RecordMatch = () => {
             onBack={handleBackStep}
             playerOne={playerOne}
             playerTwo={playerTwo}
-            hasSelectedBothPlayers={!!playerOne?.username && !!playerTwo?.username}
+            hasSelectedBothPlayers={!!playerOne?.id && !!playerTwo?.id}
           />
         );
       case Steps.SearchPlayerOne:
@@ -74,7 +80,14 @@ export const RecordMatch = () => {
         );
 
       case Steps.SetScores:
-        return <SetScores />;
+        return (
+          <SetScores
+            onBack={handleBackStep}
+            playerTwo={playerTwo}
+            playerOne={playerOne}
+            reset={reset}
+          />
+        );
       default:
         return <Record onClick={handleNextStep} />;
     }

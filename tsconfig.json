@@ -26,7 +26,7 @@
       "@organisms/*": ["./src/app/components/organisms/*"],
       "@shared/*": ["./src/shared/*"],
       "@hooks/*": ["./src/app/hooks/*"],
-
+      "@api/*": ["./src/app/api/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
