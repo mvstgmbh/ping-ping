@@ -1,6 +1,6 @@
+import { HeaderWithIcons } from '@/app/components/molecules/HeaderWithIcons';
 import { MatchDTO } from '@api/match/route';
 import { PrimaryButton } from '@atoms/index';
-import { Header } from '@molecules/HeaderWithBackIcon';
 import { PlayerNameWithPicture } from '@molecules/PlayerNameWithPicture';
 import { Player } from '@prisma/client';
 import { apiService } from '@shared/infra/apiService';
@@ -38,7 +38,7 @@ export const SetScores = ({ onBack, playerOne, playerTwo, reset }: Props) => {
 
   return (
     <div className="h-full ">
-      <Header label={'Final Score'} onClickBack={onBack} />
+      <HeaderWithIcons label={'Final Score'} onClickLeftIcon={onBack} />
       <div className="p-4 h-full flex flex-col justify-evenly text-black">
         <span>
           When you add the match score, the other player must confirm or call bullshit, or it will

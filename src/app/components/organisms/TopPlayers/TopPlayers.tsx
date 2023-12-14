@@ -1,12 +1,12 @@
 'use client';
 
 import { Player, getRankingTopPlayers } from '@/player/domain/Player';
-import { Header } from '../../molecules/HeaderWithBackIcon';
 import { SearchPlayerInput } from '../../molecules/SearchPlayerInput';
 import { FadeInContainer } from '../../ui/FadeInContainer';
 import { MainContainer } from '../../ui/MainContainer';
 import { TopPlayer } from './TopPlayer';
 import { useState } from 'react';
+import { HeaderWithIcons } from '../../molecules/HeaderWithIcons';
 
 export const TopPlayers = ({ players }: { players: Player[] }) => {
   const topPlayers = getRankingTopPlayers(players);
@@ -23,7 +23,7 @@ export const TopPlayers = ({ players }: { players: Player[] }) => {
     <MainContainer className="px-4">
       <FadeInContainer>
         <div className="flex flex-col gap-6">
-          <Header label={'Top Players'} />
+          <HeaderWithIcons label={'Top Players'} />
           <SearchPlayerInput onChange={onChange} placeholder="Search Players" />
         </div>
       </FadeInContainer>
