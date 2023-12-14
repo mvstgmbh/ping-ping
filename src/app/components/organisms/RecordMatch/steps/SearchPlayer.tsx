@@ -13,16 +13,18 @@ type Props = {
   handleSelectPlayer: (player: Player) => void;
   onContinue: (step: Steps) => void;
   onBack: () => void;
-  headerLabel: string;
-  hasSelectedBothPlayers: boolean;
+  playerOne?: Player;
+  playerTwo?: Player;
+  isPlayerOne?: boolean;
 };
 
 export const SearchPlayer = ({
   handleSelectPlayer,
   onContinue,
   onBack,
-  headerLabel,
-  hasSelectedBothPlayers,
+  isPlayerOne,
+  playerOne,
+  playerTwo,
 }: Props) => {
   const [players, setPlayers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -57,7 +59,7 @@ export const SearchPlayer = ({
 
   return (
     <div className="h-full">
-      <HeaderWithBackIcon label={headerLabel} onClickBack={onBack} />
+      <HeaderWithBackIcon label={isPlayerOne ? 'Player 1' : 'Player 2'} onClickBack={onBack} />
       <div className={`h-full flex flex-col justify-between p-4 overflow-y-auto`}>
         <div>
           <SearchPlayerInput onChange={onChange} placeholder="Search Players" />
@@ -79,6 +81,7 @@ export const SearchPlayer = ({
               isFirst={index === 0}
               isLast={index === players.length - 1}
               onSelectPlayer={onSelectPlayer}
+              disabled={playerOne?.id === player.id || playerTwo?.id === player.id}
             />
           ))}
         </div>

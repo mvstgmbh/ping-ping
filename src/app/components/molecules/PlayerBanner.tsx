@@ -6,9 +6,17 @@ type Props = {
   isLast?: boolean;
   player: Player;
   onSelectPlayer: (player: Player) => void;
+  disabled?: boolean;
 };
 
-export const PlayerBanner = ({ player, selectable, isFirst, isLast, onSelectPlayer }: Props) => {
+export const PlayerBanner = ({
+  player,
+  selectable,
+  isFirst,
+  isLast,
+  onSelectPlayer,
+  disabled,
+}: Props) => {
   return (
     <div
       className={`flex p-2 justify-between items-center border-b border-[#CFCFCF] bg-[#F3F3F3] ${
@@ -28,6 +36,7 @@ export const PlayerBanner = ({ player, selectable, isFirst, isLast, onSelectPlay
               <input
                 name="player"
                 type="radio"
+                disabled={disabled}
                 className="before:content[''] peer relative h-8 w-8 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-gray-900 checked:before:bg-gray-900 hover:before:opacity-10"
                 onChange={(e) => {
                   if (e.target.checked) {
