@@ -1,12 +1,12 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Player } from '../../../../player/domain/Player';
 import { ChoosePlayers } from './steps/ChoosePlayers';
 import { Record } from './steps/Record';
 import { SearchPlayer } from './steps/SearchPlayer';
 import { SetScores } from './steps/SetScores';
-import { useRouter } from 'next/navigation';
 
 export enum Steps {
   Record = 'record',
@@ -47,12 +47,6 @@ export const RecordMatch = ({ players }: Props) => {
     } else {
       setPlayerTwo(player);
     }
-  };
-
-  const reset = () => {
-    setPlayerOne(undefined);
-    setPlayerTwo(undefined);
-    setCurrentStep(Steps.Record);
   };
 
   const renderStep = () => {
@@ -96,14 +90,7 @@ export const RecordMatch = ({ players }: Props) => {
         );
 
       case Steps.SetScores:
-        return (
-          <SetScores
-            onBack={handleBackStep}
-            playerTwo={playerTwo}
-            playerOne={playerOne}
-            reset={reset}
-          />
-        );
+        return <SetScores onBack={handleBackStep} playerTwo={playerTwo} playerOne={playerOne} />;
       default:
         return <Record onClick={handleNextStep} />;
     }
