@@ -1,3 +1,4 @@
+'use client';
 import { NavbarItem } from '@atoms/NavbarItem';
 import RankingSelected from '@public/ranking-selected.svg';
 import Ranking from '@public/ranking.svg';

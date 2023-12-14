@@ -1,4 +1,3 @@
-'use client';
 import { withNavbar } from '../components/hoc/withNavbar';
 import { Rankings } from '../components/organisms/Rankings/Rankings';
 
