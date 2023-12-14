@@ -24,6 +24,8 @@
       "@atoms/*": ["./src/app/components/atoms/*"],
       "@molecules/*": ["./src/app/components/molecules/*"],
       "@organisms/*": ["./src/app/components/organisms/*"],
+      "@shared/*": ["./src/shared/*"],
+      "@hooks/*": ["./src/app/hooks/*"],
 
     }
   },

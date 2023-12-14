@@ -39,7 +39,8 @@ export const Navbar = () => {
 
   return (
     <div
-      className="flex flex-row justify-evenly sticky bottom-0 w-full bg-white bg-opacity-60 rounded-t-[24px] border border-[#f3f3f3] drop-shadow-lg"
+      id={'navbar'}
+      className="flex flex-row justify-evenly w-full bg-white bg-opacity-60 rounded-t-[24px] border border-[#f3f3f3] drop-shadow-lg"
       style={{ boxShadow: ' 0px -2px 24px 0px rgba(0, 0, 0, 0.1)' }}
     >
       {items.map((item) => {
