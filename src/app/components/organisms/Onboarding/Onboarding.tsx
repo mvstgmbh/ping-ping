@@ -1,16 +1,18 @@
-import Cookie from 'js-cookie';
+'use client';
 import Image from 'next/image';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
 import { PrimaryButton, SecondaryButton } from '@/app/components/atoms/index';
+import { Routes } from '@enums/routes.enums';
 import frame1Img from '@public/frame-1.svg';
 import frame2Img from '@public/frame-2.svg';
 import frame3Img from '@public/frame-3.svg';
-import { CookieKeys } from '../../../enums/cookie.enums';
+import { useRouter } from 'next/navigation';
 
 export const Onboarding = () => {
+  const { push } = useRouter();
   const frames = [
     {
       image: frame1Img,
@@ -31,8 +33,7 @@ export const Onboarding = () => {
   };
 
   const handleStart = () => {
-    console.log("let's ping");
-    Cookie.set(CookieKeys.OnboardingComplete, 'true');
+    push(Routes.record);
   };
 
   const sliderSettings = {
