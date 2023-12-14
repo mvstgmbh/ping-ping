@@ -1,3 +1,4 @@
+'use client';
 import { Player } from '@prisma/client';
 import { useState } from 'react';
 import { ChoosePlayers } from './steps/ChoosePlayers';
@@ -13,7 +14,11 @@ export enum Steps {
   SetScores = 'setScores',
 }
 
-export const RecordMatch = () => {
+type Props = {
+  players: Player[];
+};
+
+export const RecordMatch = ({ players }: Props) => {
   const [currentStep, setCurrentStep] = useState(Steps.Record);
 
   const [previousStep, setPreviousStep] = useState<Steps>();
@@ -66,6 +71,7 @@ export const RecordMatch = () => {
             isPlayerOne
             playerOne={playerOne}
             playerTwo={playerTwo}
+            playerList={players}
           />
         );
       case Steps.SearchPlayerTwo:
@@ -76,6 +82,7 @@ export const RecordMatch = () => {
             onBack={handleBackStep}
             playerTwo={playerTwo}
             playerOne={playerOne}
+            playerList={players}
           />
         );
 

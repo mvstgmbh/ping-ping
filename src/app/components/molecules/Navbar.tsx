@@ -14,9 +14,9 @@ export const Navbar = () => {
 
   const items = [
     {
-      svg: pathname === '/' ? RecordSelected : Record,
-      isSelected: pathname === '/',
-      path: '/',
+      svg: pathname === '/record' ? RecordSelected : Record,
+      isSelected: pathname === '/record',
+      path: '/record',
       label: 'Record',
     },
     {
@@ -34,14 +34,13 @@ export const Navbar = () => {
   ];
 
   const handleClick = (path: string) => {
-    console.log({ path });
     push(path);
   };
 
   return (
     <div
       id={'navbar'}
-      className="flex flex-row justify-evenly w-full bg-white bg-opacity-60 rounded-t-[24px] border border-[#f3f3f3] drop-shadow-lg fixed bottom-0 left-0 z-10"
+      className="flex flex-row justify-evenly w-full bg-white bg-opacity-60 rounded-t-[24px] border border-[#f3f3f3] drop-shadow-lg sticky bottom-0 left-0 z-10"
       style={{ boxShadow: ' 0px -2px 24px 0px rgba(0, 0, 0, 0.1)' }}
     >
       {items.map((item) => {
