@@ -5,6 +5,5 @@ import { MainContainer } from '../components/ui/MainContainer';
 
 export default async function Record() {
   const players = await prisma.player.findMany();
-  console.log(players);
   return <MainContainer>{withNavbar(<RecordMatch players={players} />)}</MainContainer>;
 }

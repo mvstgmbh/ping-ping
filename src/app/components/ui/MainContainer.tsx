@@ -6,12 +6,7 @@ export const MainContainer: FC<PropsWithChildren & { className?: string }> = ({
   className,
 }) => {
   return (
-    <main
-      className={clsx(
-        'dvh bg-gradient-to-t from-[#F6F6F4] via-[#FBE9E9] to-[#D9EDF4] h-screen',
-        className
-      )}
-    >
+    <main className={clsx('dvh bg-gradient-to-t from-[#FBE9E9] to-[#D9EDF4] h-screen', className)}>
       {children}
     </main>
   );

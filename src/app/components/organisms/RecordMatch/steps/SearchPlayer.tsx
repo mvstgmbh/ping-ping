@@ -70,7 +70,11 @@ export const SearchPlayer = ({
 
   return (
     <div className="h-full">
-      <HeaderWithIcons label={isPlayerOne ? 'Player 1' : 'Player 2'} onClickLeftIcon={onBack} onClickRightIcon={onAddNewPlayer} />
+      <HeaderWithIcons
+        label={isPlayerOne ? 'Player 1' : 'Player 2'}
+        onClickLeftIcon={onBack}
+        onClickRightIcon={onAddNewPlayer}
+      />
       <div className={`h-full flex flex-col justify-between p-4 overflow-y-auto`}>
         <div>
           <SearchPlayerInput onChange={onChange} placeholder="Search Players" />
