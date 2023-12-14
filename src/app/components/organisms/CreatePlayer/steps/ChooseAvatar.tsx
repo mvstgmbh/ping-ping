@@ -1,46 +1,63 @@
+import Image, { StaticImageData } from 'next/image';
+import { useState, useEffect } from 'react';
+import { HeaderWithIcons } from '@/app/components/molecules/HeaderWithIcons';
 import { AvatarItem } from '@/app/components/atoms/AvatarItem';
-import Image from 'next/image';
-import ChevronLeft from '@public/chevron-left.svg';
-import Avatar1 from '@public/avatar1.svg';
-import Avatar2 from '@public/avatar2.svg';
-import Avatar3 from '@public/avatar3.svg';
-import Avatar4 from '@public/avatar4.svg';
-import Avatar5 from '@public/avatar5.svg';
-import Avatar6 from '@public/avatar6.svg';
-import Avatar7 from '@public/avatar7.svg';
-import Avatar8 from '@public/avatar8.svg';
-import Avatar9 from '@public/avatar9.svg';
-import Avatar10 from '@public/avatar10.svg';
-import Avatar11 from '@public/avatar11.svg';
-import Avatar12 from '@public/avatar12.svg';
-import { useState } from 'react';
 
-export const ChooseAvatar = () => {
-  const items = [{ id: 1, svg: Avatar1 }, { id: 2, svg: Avatar2 }, { id: 3, svg: Avatar3 }, { id: 4, svg: Avatar4 }, { id: 5, svg: Avatar5 }, { id: 6, svg: Avatar6 }, { id: 7, svg: Avatar7 }, { id: 8, svg: Avatar8 }, { id: 9, svg: Avatar9 }, { id: 10, svg: Avatar10 }, { id: 11, svg: Avatar11 }, { id: 12, svg: Avatar12 }];
+type Props = {
+  setAvatar: (avatar: string) => void;
+  onBack: () => void;
+};
 
-  const [itemSelected, setItemSelected] = useState(Avatar1);
+type Avatar = {
+  name: string;
+  path: string;
+};
 
-  const handleAvatarClick = (event: any) => {
-    setItemSelected(event.target.src);
-    console.log({ itemSelected })
-  }
+const avatars: Record<string, Avatar> = {
+  avatar1: { name: 'avatar1', path: '/avatar1.svg' },
+  avatar2: { name: 'avatar2', path: '/avatar2.svg' },
+  avatar3: { name: 'avatar3', path: '/avatar3.svg' },
+  avatar4: { name: 'avatar4', path: '/avatar4.svg' },
+  avatar5: { name: 'avatar5', path: '/avatar5.svg' },
+  avatar6: { name: 'avatar6', path: '/avatar6.svg' },
+  avatar7: { name: 'avatar7', path: '/avatar7.svg' },
+  avatar8: { name: 'avatar8', path: '/avatar8.svg' },
+  avatar9: { name: 'avatar9', path: '/avatar9.svg' },
+  avatar10: { name: 'avatar10', path: '/avatar10.svg' },
+  avatar11: { name: 'avatar11', path: '/avatar11.svg' },
+  avatar12: { name: 'avatar12', path: '/avatar12.svg' },
+};
+
+export const ChooseAvatar = ({ setAvatar, onBack }: Props) => {
+  const [selectedAvatar, setSelectedAvatar] = useState<Avatar | null>(null);
+
+  useEffect(() => {
+    setSelectedAvatar(avatars.avatar1);
+  }, []);
+
+  const handleAvatarClick = (avatar: Avatar) => {
+    if (selectedAvatar && selectedAvatar.name === avatar.name) {
+      setSelectedAvatar(null);
+      setAvatar('');
+    } else {
+      setSelectedAvatar(avatar);
+      setAvatar(avatar.name);
+    }
+  };
 
   return (
     <div className="flex flex-col justify-between items-center h-full">
-      <button className="absolute top-0 left-0 pt-7 pl-6">
-        <Image src={ChevronLeft} alt={'chevron-left'} />
-      </button>
-      <h1 className="text-[#0D0D0D] text-center text-3xl font-bold max-w-[70%]">Choose your avatar</h1>
-      <div className='grid grid-cols-3 gap-8'>
-        {items.map((item) => {
-          return (
-            <div key={item.id} onClick={handleAvatarClick}>
-              <AvatarItem svg={item.svg} itemSelected={itemSelected} />
-            </div>
-          );
-        })}
+      <HeaderWithIcons label={'Choose your avatar'} onClickLeftIcon={onBack} />
+      <div className='grid grid-cols-3 gap-8 p-4'>
+        {Object.values(avatars).map((avatar) => (
+          <div key={avatar.name} onClick={() => handleAvatarClick(avatar)}>
+            <AvatarItem svg={avatar.path} avatarSelected={selectedAvatar === avatar} />
+          </div>
+        ))}
       </div>
-      <button type="submit" className="bg-[#0D0D0D] text-white font-bold py-[12px] px-[24px] border border-[#243c5a] rounded-2xl w-full">Let's Ping</button>
+      <button type="submit" className="bg-[#0D0D0D] text-white font-bold py-[12px] px-[24px] border border-[#243c5a] rounded-2xl w-full">
+        Let's Ping
+      </button>
     </div>
   );
 };

@@ -4,6 +4,7 @@ import { ChoosePlayers } from './steps/ChoosePlayers';
 import { Record } from './steps/Record';
 import { SearchPlayer } from './steps/SearchPlayer';
 import { SetScores } from './steps/SetScores';
+import { useRouter } from 'next/navigation';
 
 export enum Steps {
   Record = 'record',
@@ -14,6 +15,7 @@ export enum Steps {
 }
 
 export const RecordMatch = () => {
+  const { push } = useRouter();
   const [currentStep, setCurrentStep] = useState(Steps.Record);
 
   const [previousStep, setPreviousStep] = useState<Steps>();
@@ -27,6 +29,10 @@ export const RecordMatch = () => {
 
   const handleBackStep = () => {
     setCurrentStep(previousStep || Steps.Record);
+  };
+
+  const handleAddNewPlayer = () => {
+    push('/players/create');
   };
 
   const handleSelectPlayer = (player: Player) => {
@@ -57,6 +63,7 @@ export const RecordMatch = () => {
             handleSelectPlayer={handleSelectPlayer}
             onContinue={handleNextStep}
             onBack={handleBackStep}
+            onAddNewPlayer={handleAddNewPlayer}
             isPlayerOne
             playerOne={playerOne}
             playerTwo={playerTwo}
@@ -68,6 +75,7 @@ export const RecordMatch = () => {
             handleSelectPlayer={handleSelectPlayer}
             onContinue={handleNextStep}
             onBack={handleBackStep}
+            onAddNewPlayer={handleAddNewPlayer}
             playerTwo={playerTwo}
             playerOne={playerOne}
           />
