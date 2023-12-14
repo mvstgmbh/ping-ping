@@ -1,6 +1,6 @@
 import prisma from '../../../../db/prismaClient';
 import { withNavbar } from '@/app/components/hoc/withNavbar';
-import PlayerComponent from '@/app/components/player/Player';
+import PlayerDetail from '@/app/components/player/Player';
 
 export async function generateStaticParams() {
   const players = await prisma.player.findMany({
@@ -16,7 +16,7 @@ export async function generateStaticParams() {
 }
 
 const PlayerPage = async ({ params }: { params: { id: string } }) => {
-  return withNavbar(<PlayerComponent id={Number(params.id)} />);
+  return withNavbar(<PlayerDetail id={Number(params.id)} />);
 };
 
 export default PlayerPage;

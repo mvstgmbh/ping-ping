@@ -20,16 +20,16 @@ export const Navbar = () => {
       label: 'Record',
     },
     {
-      svg: pathname === '/rankings' ? RankingSelected : Ranking,
-      isSelected: pathname === '/rankings',
-      path: '/rankings',
-      label: 'Ranking',
+      svg: pathname === '/top-players' ? RankingSelected : Ranking,
+      isSelected: pathname === '/top-players',
+      path: '/top-players',
+      label: 'Top Players',
     },
     {
-      svg: pathname === '/profile' ? UserSelected : User,
-      isSelected: pathname === '/profile',
-      path: '/profile',
-      label: 'You',
+      svg: pathname === '/streaks' ? UserSelected : User,
+      isSelected: pathname === '/streaks',
+      path: '/streaks',
+      label: 'Win Streaks',
     },
   ];
 
@@ -41,7 +41,7 @@ export const Navbar = () => {
   return (
     <div
       id={'navbar'}
-      className="flex flex-row justify-evenly w-full bg-white bg-opacity-60 rounded-t-[24px] border border-[#f3f3f3] drop-shadow-lg"
+      className="flex flex-row justify-evenly w-full bg-white bg-opacity-60 rounded-t-[24px] border border-[#f3f3f3] drop-shadow-lg fixed bottom-0 left-0 z-10"
       style={{ boxShadow: ' 0px -2px 24px 0px rgba(0, 0, 0, 0.1)' }}
     >
       {items.map((item) => {

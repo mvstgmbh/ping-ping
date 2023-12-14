@@ -11,7 +11,7 @@ import { InfoRow } from './InfoRow';
 import prisma from '../../../../db/prismaClient';
 import { FadeInContainer } from '../ui/FadeInContainer';
 
-const PlayerComponent = async ({ id }: { id: number }) => {
+const PlayerDetail = async ({ id }: { id: number }) => {
   const players = (await prisma.player.findMany({
     include: {
       matchesAsPlayerA: true,
@@ -81,4 +81,4 @@ const PlayerComponent = async ({ id }: { id: number }) => {
   );
 };
 
-export default PlayerComponent;
+export default PlayerDetail;
