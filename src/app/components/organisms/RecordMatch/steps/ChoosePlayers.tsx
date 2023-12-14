@@ -1,4 +1,4 @@
-import { Header } from '@molecules/HeaderWithBackIcon';
+import { HeaderWithIcons } from '@/app/components/molecules/HeaderWithIcons';
 import { PlayerNameWithPicture } from '@molecules/PlayerNameWithPicture';
 
 import { Player } from '../../../../../player/domain/Player';
@@ -22,7 +22,7 @@ export const ChoosePlayers = ({
 }: Props) => {
   return (
     <div className="h-full">
-      <Header label={'Choose Players'} onClickBack={onBack} />
+      <HeaderWithIcons label={'Choose Players'} onClickLeftIcon={onBack} />
       <div className="h-full flex flex-col justify-center items-center gap-6">
         <PlayerNameWithPicture
           playerAvatar={playerOne?.avatar}

@@ -29,7 +29,7 @@ export const Onboarding = () => {
   ];
 
   const handleCreateProfile = () => {
-    console.log('create profile');
+    push('/players/create');
   };
 
   const handleStart = () => {
