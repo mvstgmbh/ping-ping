@@ -1,14 +1,9 @@
+import { Player } from '@prisma/client';
 import { useState } from 'react';
 import { ChoosePlayers } from './steps/ChoosePlayers';
 import { Record } from './steps/Record';
 import { SearchPlayer } from './steps/SearchPlayer';
 import { SetScores } from './steps/SetScores';
-
-export type ChoosePlayerProps = {
-  playerNumber?: number;
-  playerName?: string;
-  playerAvatar?: string;
-};
 
 export enum Steps {
   Record = 'record',
@@ -22,8 +17,8 @@ export const RecordMatch = () => {
   const [currentStep, setCurrentStep] = useState(Steps.Record);
 
   const [previousStep, setPreviousStep] = useState<Steps>();
-  const [playerOne, setPlayerOne] = useState<ChoosePlayerProps>();
-  const [playerTwo, setPlayerTwo] = useState<ChoosePlayerProps>();
+  const [playerOne, setPlayerOne] = useState<Player>();
+  const [playerTwo, setPlayerTwo] = useState<Player>();
 
   const handleNextStep = (stepName: Steps) => {
     setCurrentStep(stepName);
@@ -34,7 +29,7 @@ export const RecordMatch = () => {
     setCurrentStep(previousStep || Steps.Record);
   };
 
-  const handleSelectPlayer = (player: ChoosePlayerProps) => {
+  const handleSelectPlayer = (player: Player) => {
     if (currentStep === Steps.SearchPlayerOne) {
       setPlayerOne(player);
     } else {
@@ -53,6 +48,7 @@ export const RecordMatch = () => {
             onBack={handleBackStep}
             playerOne={playerOne}
             playerTwo={playerTwo}
+            hasSelectedBothPlayers={!!playerOne?.username && !!playerTwo?.username}
           />
         );
       case Steps.SearchPlayerOne:
@@ -62,7 +58,7 @@ export const RecordMatch = () => {
             onContinue={handleNextStep}
             onBack={handleBackStep}
             headerLabel={'Player 1'}
-            hasSelectedBothPlayers={!!playerOne?.playerName && !!playerTwo?.playerName}
+            hasSelectedBothPlayers={!!playerOne?.username && !!playerTwo?.username}
           />
         );
       case Steps.SearchPlayerTwo:
@@ -72,7 +68,7 @@ export const RecordMatch = () => {
             onContinue={handleNextStep}
             onBack={handleBackStep}
             headerLabel={'Player 2'}
-            hasSelectedBothPlayers={!!playerOne?.playerName && !!playerTwo?.playerName}
+            hasSelectedBothPlayers={!!playerOne?.username && !!playerTwo?.username}
           />
         );
 

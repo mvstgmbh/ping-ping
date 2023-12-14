@@ -4,12 +4,13 @@ import { useGetHeaderAndFooterHeight } from '@hooks/useGetHeaderAndFooterHeight'
 import { HeaderWithBackIcon } from '@molecules/HeaderWithBackIcon';
 import { PlayerBanner } from '@molecules/PlayerBanner';
 import { SearchPlayerInput } from '@molecules/SearchPlayerInput';
+import { Player } from '@prisma/client';
 import { apiService } from '@shared/infra/apiService';
 import { useEffect, useState } from 'react';
-import { ChoosePlayerProps, Steps } from '../RecordMatch';
+import { Steps } from '../RecordMatch';
 
 type Props = {
-  handleSelectPlayer: (player: ChoosePlayerProps) => void;
+  handleSelectPlayer: (player: Player) => void;
   onContinue: (step: Steps) => void;
   onBack: () => void;
   headerLabel: string;
@@ -32,16 +33,12 @@ export const SearchPlayer = ({
     console.log(input);
   };
 
-  const onSelectPlayer = (player: ChoosePlayerProps) => {
+  const onSelectPlayer = (player: Player) => {
     handleSelectPlayer(player);
   };
 
   const handleConfirm = () => {
-    if (hasSelectedBothPlayers) {
-      onContinue(Steps.SetScores);
-    } else {
-      onContinue(Steps.ChoosePlayers);
-    }
+    onContinue(Steps.ChoosePlayers);
   };
 
   useEffect(() => {
@@ -81,6 +78,7 @@ export const SearchPlayer = ({
               selectable
               isFirst={index === 0}
               isLast={index === players.length - 1}
+              onSelectPlayer={onSelectPlayer}
             />
           ))}
         </div>
