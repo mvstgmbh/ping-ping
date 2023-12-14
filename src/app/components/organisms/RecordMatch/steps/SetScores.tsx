@@ -39,7 +39,7 @@ export const SetScores = ({ onBack, playerOne, playerTwo, reset }: Props) => {
   return (
     <div className="h-full ">
       <HeaderWithBackIcon label={'Final Score'} onClickBack={onBack} />
-      <div className="p-4 h-full flex flex-col justify-evenly">
+      <div className="p-4 h-full flex flex-col justify-evenly text-black">
         <span>
           When you add the match score, the other player must confirm or call bullshit, or it will
           be approved after 24 hours.
@@ -51,6 +51,7 @@ export const SetScores = ({ onBack, playerOne, playerTwo, reset }: Props) => {
               playerName={playerOne?.username || 'Player 2'}
               inColumn={false}
               imageSize={48}
+              disabled
             />
             <input
               className="w-[100px] rounded-2xl border border-[#CFCFCF] text-center font-bold"
@@ -66,6 +67,7 @@ export const SetScores = ({ onBack, playerOne, playerTwo, reset }: Props) => {
               playerName={playerTwo?.username || 'Player 2'}
               inColumn={false}
               imageSize={48}
+              disabled
             />
             <input
               className="w-[100px] rounded-2xl border border-[#CFCFCF] text-center font-bold"

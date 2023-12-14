@@ -7,6 +7,7 @@ type Props = {
   onClick?: () => void;
   imageSize?: number;
   inColumn?: boolean;
+  disabled?: boolean;
 };
 
 export const PlayerNameWithPicture = ({
@@ -15,11 +16,15 @@ export const PlayerNameWithPicture = ({
   onClick,
   imageSize,
   inColumn = true,
+  disabled,
 }: Props) => {
   return (
     <button
-      className={`flex flex-${inColumn ? 'col' : 'row-reverse'} justify-center items-center gap-4`}
+      className={`flex ${
+        inColumn ? 'flex-col' : 'flex-row-reverse'
+      } justify-center items-center gap-4`}
       onClick={onClick}
+      disabled={disabled}
     >
       <span className="text-black">{playerName}</span>
       <div
