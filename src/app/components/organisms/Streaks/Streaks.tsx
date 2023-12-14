@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Player } from '../../../../player/domain/Player';
 import { apiService } from '../../../../shared/infra/apiService';
 import { Routes } from '../../../enums/routes.enums';
-import { Header } from '../../molecules/HeaderWithBackIcon';
+import { HeaderWithIcons } from '../../molecules/HeaderWithIcons';
 import { PlayerBanner } from '../../molecules/PlayerBanner';
 import { SearchPlayerInput } from '../../molecules/SearchPlayerInput';
 import { FadeInContainer } from '../../ui/FadeInContainer';
@@ -43,7 +43,7 @@ export const Streaks = ({ players: playerList }: { players?: Player[] }) => {
     <MainContainer className="px-4">
       <FadeInContainer>
         <div className="flex flex-col gap-6">
-          <Header label={'Streaks'} />
+          <HeaderWithIcons label={'Streaks'} />
           <SearchPlayerInput onChange={onChange} placeholder="Search Players" />
         </div>
       </FadeInContainer>

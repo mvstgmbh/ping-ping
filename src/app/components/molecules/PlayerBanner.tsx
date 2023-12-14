@@ -58,7 +58,7 @@ export const PlayerBanner = ({
             </label>
           </div>
         ) : (
-          <span className="text-sm font-normal">{player.winStreak} games</span>
+          <span className="text-sm text-black font-normal">{player.winStreak} games</span>
         )}
       </div>
     </div>
