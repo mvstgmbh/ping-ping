@@ -1,4 +1,6 @@
+import Image from 'next/image';
 import { Player } from '../../../player/domain/Player';
+import { useGetAvatars } from '../../hooks/useGetAvatars';
 
 type Props = {
   selectable?: boolean;
@@ -17,6 +19,10 @@ export const PlayerBanner = ({
   onSelectPlayer,
   disabled,
 }: Props) => {
+  const avatars = useGetAvatars();
+
+  const playerAvatar = avatars[player.avatar]?.path || avatars.avatar1.path;
+
   return (
     <div
       className={`flex p-4 justify-between items-center border-b border-[#CFCFCF] bg-[#F3F3F3] ${
@@ -26,7 +32,9 @@ export const PlayerBanner = ({
       onClick={() => onSelectPlayer(player)}
     >
       <div className="flex items-center gap-4">
-        <div className="w-8 h-8 rounded-full bg-[#D9D9D9]" />
+        <div className="w-8 h-8 rounded-full bg-[#D9D9D9]">
+          <Image src={playerAvatar} alt="player avatar" width={32} height={32} />
+        </div>
         <span className="text-black font-medium">{player?.username}</span>
       </div>
 

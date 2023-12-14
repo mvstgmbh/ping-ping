@@ -1,5 +1,6 @@
 import Plus from '@public/plus.svg';
 import Image from 'next/image';
+import { useGetAvatars } from '../../hooks/useGetAvatars';
 
 type Props = {
   playerName?: string;
@@ -18,6 +19,10 @@ export const PlayerNameWithPicture = ({
   inColumn = true,
   disabled,
 }: Props) => {
+  const avatars = useGetAvatars();
+  const selectedAvatar =
+    avatars[playerAvatar as keyof typeof avatars]?.path || avatars.avatar1.path;
+
   return (
     <button
       className={`flex ${
@@ -34,11 +39,11 @@ export const PlayerNameWithPicture = ({
           height: imageSize || 108,
         }}
       >
-        {/* {playerAvatar ? (
-          <Image src={playerAvatar} alt="player avatar" width={108} height={108} />
-        ) : ( */}
-        <Image src={Plus} alt="add" width={36} height={36} />
-        {/* )} */}
+        {playerAvatar ? (
+          <Image src={selectedAvatar} alt="player avatar" width={108} height={108} />
+        ) : (
+          <Image src={Plus} alt="add" width={36} height={36} />
+        )}
       </div>
     </button>
   );

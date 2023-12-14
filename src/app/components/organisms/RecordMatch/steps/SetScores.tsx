@@ -4,19 +4,21 @@ import { HeaderWithIcons } from '@molecules/HeaderWithIcons';
 import { PlayerNameWithPicture } from '@molecules/PlayerNameWithPicture';
 
 import { apiService } from '@shared/infra/apiService';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Player } from '../../../../../player/domain/Player';
+import { Routes } from '../../../../enums/routes.enums';
 
 type Props = {
   onBack: () => void;
   playerOne?: Player;
   playerTwo?: Player;
-  reset: () => void;
 };
-export const SetScores = ({ onBack, playerOne, playerTwo, reset }: Props) => {
+export const SetScores = ({ onBack, playerOne, playerTwo }: Props) => {
   const [playerOneScore, setPlayerOneScore] = useState<number>(0);
   const [playerTwoScore, setPlayerTwoScore] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { push } = useRouter();
 
   const setMatchScore = async () => {
     setIsLoading(true);
@@ -30,7 +32,7 @@ export const SetScores = ({ onBack, playerOne, playerTwo, reset }: Props) => {
     try {
       await apiService.post('/match', matchObj);
       setIsLoading(false);
-      reset();
+      push(Routes.topPlayers);
     } catch (error) {
       console.log(error);
       setIsLoading(false);

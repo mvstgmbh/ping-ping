@@ -4,4 +4,6 @@ export enum Routes {
   profile = '/profile',
   rankings = '/rankings',
   record = '/record',
+  topPlayers = '/top-players',
+  streaks = '/streaks',
 }

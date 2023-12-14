@@ -1,16 +1,17 @@
 'use client';
 
 import { Player, getRankingTopPlayers } from '@/player/domain/Player';
+import { useState } from 'react';
+import { HeaderWithIcons } from '../../molecules/HeaderWithIcons';
 import { SearchPlayerInput } from '../../molecules/SearchPlayerInput';
 import { FadeInContainer } from '../../ui/FadeInContainer';
 import { MainContainer } from '../../ui/MainContainer';
 import { TopPlayer } from './TopPlayer';
-import { useState } from 'react';
-import { HeaderWithIcons } from '../../molecules/HeaderWithIcons';
 
 export const TopPlayers = ({ players }: { players: Player[] }) => {
   const topPlayers = getRankingTopPlayers(players);
   const [filteredPlayers, setFilteredPlayers] = useState<Player[]>(topPlayers || []);
+
   const onChange = (input: string) => {
     const filtered = topPlayers?.filter((player: Player) => {
       const fullName = `${player.username}`;

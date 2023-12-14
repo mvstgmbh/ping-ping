@@ -1,7 +1,8 @@
-import { apiService } from "@/shared/infra/apiService";
-import { FormEvent, useState } from "react";
-import { ChooseAvatar } from "./steps/ChooseAvatar";
-import { EnterPlayerData } from "./steps/EnterPlayerData";
+import { apiService } from '@/shared/infra/apiService';
+import { useRouter } from 'next/navigation';
+import { FormEvent, useState } from 'react';
+import { ChooseAvatar } from './steps/ChooseAvatar';
+import { EnterPlayerData } from './steps/EnterPlayerData';
 
 export enum Steps {
   EnterPlayerData = 'enterPlayerData',
@@ -14,7 +15,9 @@ export const CreatePlayer = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [avatar, setAvatar] = useState('');
-  console.log(username, email, avatar);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { push } = useRouter();
 
   const handleNextStep = (stepName: Steps) => {
     setCurrentStep(stepName);
@@ -29,24 +32,48 @@ export const CreatePlayer = () => {
     event.preventDefault();
 
     try {
-      const response = await apiService.post('/player', { username, email, avatar }, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
+      setIsLoading(true);
+      await apiService
+        .post(
+          '/player',
+          { username, email, avatar },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        )
+        .then((response) => {
+          setIsLoading(false);
+          push('/record');
+        });
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   const renderStep = () => {
     switch (currentStep) {
       case Steps.EnterPlayerData:
-        return <EnterPlayerData setUsername={setUsername} setEmail={setEmail} onContinue={handleNextStep} onBack={handleBackStep} />;
+        return (
+          <EnterPlayerData
+            setUsername={setUsername}
+            setEmail={setEmail}
+            onContinue={handleNextStep}
+            onBack={handleBackStep}
+          />
+        );
       case Steps.ChooseAvatar:
-        return <ChooseAvatar setAvatar={setAvatar} onBack={handleBackStep} />;
+        return <ChooseAvatar setAvatar={setAvatar} onBack={handleBackStep} isLoading={isLoading} />;
       default:
-        return <EnterPlayerData setUsername={setUsername} setEmail={setEmail} onContinue={handleNextStep} onBack={handleBackStep} />;
+        return (
+          <EnterPlayerData
+            setUsername={setUsername}
+            setEmail={setEmail}
+            onContinue={handleNextStep}
+            onBack={handleBackStep}
+          />
+        );
     }
   };
 

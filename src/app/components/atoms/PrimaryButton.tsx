@@ -2,6 +2,7 @@ export type ButtonProps = {
   onClick: () => void;
   label: string;
   isLoading?: boolean;
+  type?: 'button' | 'submit';
 };
 
 const SmallLoadingSpinner = () => {
@@ -12,9 +13,10 @@ const SmallLoadingSpinner = () => {
   );
 };
 
-export const PrimaryButton = ({ onClick, label, isLoading }: ButtonProps) => {
+export const PrimaryButton = ({ onClick, label, isLoading, type = 'button' }: ButtonProps) => {
   return (
     <button
+      type={type}
       className="w-full bg-[#0D0D0D] text-white font-bold py-[12px] px-[24px] border border-[#243c5a] rounded-2xl"
       onClick={onClick}
     >
