@@ -1,10 +1,11 @@
+'use client';
 import { NavbarItem } from '@atoms/NavbarItem';
 import RankingSelected from '@public/ranking-selected.svg';
 import Ranking from '@public/ranking.svg';
 import RecordSelected from '@public/record-selected.svg';
 import Record from '@public/record.svg';
-import UserSelected from '@public/user-selected.svg';
-import User from '@public/user.svg';
+import RocketSelected from '@public/rocket-launch-selected.svg';
+import Rocket from '@public/rocket-launch.svg';
 import { usePathname, useRouter } from 'next/navigation';
 
 export const Navbar = () => {
@@ -13,34 +14,33 @@ export const Navbar = () => {
 
   const items = [
     {
-      svg: pathname === '/' ? RecordSelected : Record,
-      isSelected: pathname === '/',
-      path: '/',
+      svg: pathname === '/record' ? RecordSelected : Record,
+      isSelected: pathname === '/record',
+      path: '/record',
       label: 'Record',
     },
     {
-      svg: pathname === '/rankings' ? RankingSelected : Ranking,
-      isSelected: pathname === '/rankings',
-      path: '/rankings',
-      label: 'Ranking',
+      svg: pathname === '/top-players' ? RankingSelected : Ranking,
+      isSelected: pathname === '/top-players',
+      path: '/top-players',
+      label: 'Top Players',
     },
     {
-      svg: pathname === '/profile' ? UserSelected : User,
-      isSelected: pathname === '/profile',
-      path: '/profile',
-      label: 'You',
+      svg: pathname === '/streaks' ? RocketSelected : Rocket,
+      isSelected: pathname === '/streaks',
+      path: '/streaks',
+      label: 'Win Streaks',
     },
   ];
 
   const handleClick = (path: string) => {
-    console.log({ path });
     push(path);
   };
 
   return (
     <div
       id={'navbar'}
-      className="flex flex-row justify-evenly w-full bg-white bg-opacity-60 rounded-t-[24px] border border-[#f3f3f3] drop-shadow-lg"
+      className="flex flex-row justify-evenly w-full bg-white bg-opacity-60 rounded-t-[24px] border border-[#f3f3f3] drop-shadow-lg sticky bottom-0 left-0 z-10"
       style={{ boxShadow: ' 0px -2px 24px 0px rgba(0, 0, 0, 0.1)' }}
     >
       {items.map((item) => {

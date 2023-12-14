@@ -1,4 +1,6 @@
 import prisma from '../../../../db/prismaClient';
+import { withNavbar } from '@/app/components/hoc/withNavbar';
+import PlayerDetail from '@/app/components/player/Player';
 
 export async function generateStaticParams() {
   const players = await prisma.player.findMany({
@@ -13,19 +15,8 @@ export async function generateStaticParams() {
   }));
 }
 
-const Player = async ({ params }: { params: { id: string } }) => {
-  const id = Number(params.id);
-  const player = await prisma.player.findUnique({
-    where: {
-      id,
-    },
-    include: {
-      matchesAsPlayerA: true,
-      matchesAsPlayerB: true,
-    },
-  });
-
-  return <div>{JSON.stringify(player, null, 2)}</div>;
+const PlayerPage = async ({ params }: { params: { id: string } }) => {
+  return withNavbar(<PlayerDetail id={Number(params.id)} />);
 };
 
-export default Player;
+export default PlayerPage;

@@ -5,13 +5,35 @@ type Props = {
   playerName?: string;
   playerAvatar?: string;
   onClick?: () => void;
+  imageSize?: number;
+  inColumn?: boolean;
+  disabled?: boolean;
 };
 
-export const PlayerNameWithPicture = ({ playerName, playerAvatar, onClick }: Props) => {
+export const PlayerNameWithPicture = ({
+  playerName,
+  playerAvatar,
+  onClick,
+  imageSize,
+  inColumn = true,
+  disabled,
+}: Props) => {
   return (
-    <button className="flex flex-col justify-center items-center gap-4" onClick={onClick}>
+    <button
+      className={`flex ${
+        inColumn ? 'flex-col' : 'flex-row-reverse'
+      } justify-center items-center gap-4`}
+      onClick={onClick}
+      disabled={disabled}
+    >
       <span className="text-black">{playerName}</span>
-      <div className="border-[3px] border-black w-[108px] h-[108px] rounded-full bg-white flex justify-center items-center">
+      <div
+        className={`border-[3px] border-black rounded-full bg-white flex justify-center items-center`}
+        style={{
+          width: imageSize || 108,
+          height: imageSize || 108,
+        }}
+      >
         {/* {playerAvatar ? (
           <Image src={playerAvatar} alt="player avatar" width={108} height={108} />
         ) : ( */}

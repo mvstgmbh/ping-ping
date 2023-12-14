@@ -17,6 +17,7 @@ type Props = {
   playerOne?: Player;
   playerTwo?: Player;
   isPlayerOne?: boolean;
+  playerList?: Player[];
 };
 
 export const SearchPlayer = ({
@@ -27,14 +28,20 @@ export const SearchPlayer = ({
   isPlayerOne,
   playerOne,
   playerTwo,
+  playerList,
 }: Props) => {
-  const [players, setPlayers] = useState([]);
+  const [players, setPlayers] = useState<Player[]>(playerList || []);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const { footerHeight } = useGetHeaderAndFooterHeight();
 
   const onChange = (input: string) => {
-    console.log(input);
+    const filtered = playerList?.filter((player: Player) => {
+      const fullName = `${player.username}`;
+      return fullName.toLowerCase().includes(input.toLowerCase());
+    });
+    setPlayers(filtered || []);
   };
 
   const onSelectPlayer = (player: Player) => {
@@ -46,17 +53,19 @@ export const SearchPlayer = ({
   };
 
   useEffect(() => {
-    setIsLoading(true);
     const getPlayers = async () => {
+      setIsLoading(true);
       const response = await apiService.get('/player');
       setPlayers(response.data);
       setIsLoading(false);
     };
 
-    getPlayers().catch((error) => {
-      console.log(error);
-      setIsLoading(false);
-    });
+    if (!playerList?.length) {
+      getPlayers().catch((error) => {
+        console.log(error);
+        setIsLoading(false);
+      });
+    }
   }, []);
 
   return (
@@ -75,7 +84,7 @@ export const SearchPlayer = ({
             </div>
           )}
 
-          {players?.map((player: any, index) => (
+          {players?.map((player: Player, index) => (
             <PlayerBanner
               player={player}
               key={index}

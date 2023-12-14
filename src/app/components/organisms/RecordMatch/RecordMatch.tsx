@@ -1,3 +1,4 @@
+'use client';
 import { Player } from '@prisma/client';
 import { useState } from 'react';
 import { ChoosePlayers } from './steps/ChoosePlayers';
@@ -14,7 +15,11 @@ export enum Steps {
   SetScores = 'setScores',
 }
 
-export const RecordMatch = () => {
+type Props = {
+  players: Player[];
+};
+
+export const RecordMatch = ({ players }: Props) => {
   const { push } = useRouter();
   const [currentStep, setCurrentStep] = useState(Steps.Record);
 
@@ -43,6 +48,12 @@ export const RecordMatch = () => {
     }
   };
 
+  const reset = () => {
+    setPlayerOne(undefined);
+    setPlayerTwo(undefined);
+    setCurrentStep(Steps.Record);
+  };
+
   const renderStep = () => {
     switch (currentStep) {
       case Steps.Record:
@@ -54,7 +65,7 @@ export const RecordMatch = () => {
             onBack={handleBackStep}
             playerOne={playerOne}
             playerTwo={playerTwo}
-            hasSelectedBothPlayers={!!playerOne?.username && !!playerTwo?.username}
+            hasSelectedBothPlayers={!!playerOne?.id && !!playerTwo?.id}
           />
         );
       case Steps.SearchPlayerOne:
@@ -67,6 +78,7 @@ export const RecordMatch = () => {
             isPlayerOne
             playerOne={playerOne}
             playerTwo={playerTwo}
+            playerList={players}
           />
         );
       case Steps.SearchPlayerTwo:
@@ -78,11 +90,19 @@ export const RecordMatch = () => {
             onAddNewPlayer={handleAddNewPlayer}
             playerTwo={playerTwo}
             playerOne={playerOne}
+            playerList={players}
           />
         );
 
       case Steps.SetScores:
-        return <SetScores />;
+        return (
+          <SetScores
+            onBack={handleBackStep}
+            playerTwo={playerTwo}
+            playerOne={playerOne}
+            reset={reset}
+          />
+        );
       default:
         return <Record onClick={handleNextStep} />;
     }

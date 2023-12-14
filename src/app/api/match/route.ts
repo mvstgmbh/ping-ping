@@ -1,15 +1,15 @@
 import { type NextRequest } from 'next/server';
 import prisma from '../../../../db/prismaClient';
 
-interface MatchDTO {
+export interface MatchDTO {
   playerAId: number;
   playerBId: number;
   scorePlayerA: number;
   scorePlayerB: number;
 }
 
-const MAX_SCORE = 11;
-const MIN_SCORE = 0;
+const MAX_SCORE = 12;
+const MIN_SCORE = -1;
 
 export async function POST(req: NextRequest) {
   const body = (await req.json()) as MatchDTO;
