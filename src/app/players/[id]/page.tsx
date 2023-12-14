@@ -63,7 +63,7 @@ const Player = async ({ params }: { params: { id: string } }) => {
   const rankingPosition = getRankingPositionString(player.id, players);
 
   return (
-    <MainContainer>
+    <MainContainer className="px-4">
       <div className="flex flex-col items-center justify-center gap-4 pt-24 pb-4">
         <div className="h-20 w-20 bg-[#D9D9D9] rounded-full">{/* image avatar */}</div>
 
