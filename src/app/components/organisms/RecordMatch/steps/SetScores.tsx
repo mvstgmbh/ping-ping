@@ -1,6 +1,6 @@
-import { HeaderWithIcons } from '@/app/components/molecules/HeaderWithIcons';
 import { MatchDTO } from '@api/match/route';
 import { PrimaryButton } from '@atoms/index';
+import { HeaderWithIcons } from '@molecules/HeaderWithIcons';
 import { PlayerNameWithPicture } from '@molecules/PlayerNameWithPicture';
 
 import { apiService } from '@shared/infra/apiService';
