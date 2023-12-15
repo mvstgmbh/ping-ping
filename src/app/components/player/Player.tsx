@@ -5,14 +5,17 @@ import {
   getRankingPositionString,
   getTotalMatches,
 } from '@/player/domain/Player';
+import Image from 'next/image';
 import prisma from '../../../../db/prismaClient';
 import { Match } from '../../../match/domain/Match';
+import { useGetAvatars } from '../../hooks/useGetAvatars';
 import { FadeInContainer } from '../ui/FadeInContainer';
 import { MainContainer } from '../ui/MainContainer';
 import { InfoCard } from './InfoCard';
 import { InfoRow } from './InfoRow';
 
 const PlayerDetail = async ({ id }: { id: number }) => {
+  const avatars = useGetAvatars();
   const players = (await prisma.player.findMany({
     include: {
       matchesAsPlayerA: true,
@@ -48,6 +51,8 @@ const PlayerDetail = async ({ id }: { id: number }) => {
     );
   }
 
+  const selectedAvatar = avatars[player.avatar]?.path || avatars.avatar1.path;
+
   const totalMatchesPlayed = getTotalMatches(player.matchesWon, player.matchesLost);
   const totalPointDifference = getPointDifference(player.pointsFavour, player.pointsAgainst);
   const favouriteOpponent = getFavouriteOpponent(playerMatches);
@@ -57,9 +62,9 @@ const PlayerDetail = async ({ id }: { id: number }) => {
     <MainContainer className="px-4">
       <FadeInContainer>
         <div className="flex flex-col items-center justify-center gap-4 pt-24 pb-4">
-          <div className="h-20 w-20 bg-[#D9D9D9] rounded-full">{/* image avatar */}</div>
+          <Image src={selectedAvatar} alt="avatar" height={108} width={108} />
 
-          <p className="text-2xl font-bold">{player.username}</p>
+          <p className="text-2xl text-black font-bold">{player.username}</p>
         </div>
       </FadeInContainer>
 

@@ -1,5 +1,6 @@
 'use client';
 
+import { apiService } from '@/shared/infra/apiService';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Player } from '../../../../player/domain/Player';
@@ -7,7 +8,6 @@ import { ChoosePlayers } from './steps/ChoosePlayers';
 import { Record } from './steps/Record';
 import { SearchPlayer } from './steps/SearchPlayer';
 import { SetScores } from './steps/SetScores';
-import { apiService } from '@/shared/infra/apiService';
 
 export enum Steps {
   Record = 'record',
@@ -32,7 +32,8 @@ export const RecordMatch = () => {
 
   useEffect(() => {
     apiService.get('/player').then((response) => {
-      setPlayers(response.data);
+      const sorted = response.data?.sort((a: Player, b: Player) => b.id - a.id);
+      setPlayers(sorted);
     });
   }, []);
 

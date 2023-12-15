@@ -43,25 +43,27 @@ export const getFavouriteOpponent = (matches: Match[]) => {
 };
 
 export const getRankingTopPlayers = (players: Player[]) =>
-  players?.sort((a, b) => {
-    // if player has no matches, put him at the bottom
-    if (a.matchesWon + a.matchesLost === 0) {
-      return 1;
-    }
-    // check matches difference
-    const aMatchesDiff = a.matchesWon - a.matchesLost;
-    const bMatchesDiff = b.matchesWon - b.matchesLost;
+  players
+    ?.sort((a, b) => {
+      // if player has no matches, put him at the bottom
+      if (a.matchesWon + a.matchesLost === 0) {
+        return 1;
+      }
+      // check matches difference
+      const aMatchesDiff = a.matchesWon - a.matchesLost;
+      const bMatchesDiff = b.matchesWon - b.matchesLost;
 
-    if (aMatchesDiff === bMatchesDiff) {
-      // if matches difference is the same, check points difference
-      const aPointsDiff = a.pointsFavour - a.pointsAgainst;
-      const bPointsDiff = b.pointsFavour - b.pointsAgainst;
+      if (aMatchesDiff === bMatchesDiff) {
+        // if matches difference is the same, check points difference
+        const aPointsDiff = a.pointsFavour - a.pointsAgainst;
+        const bPointsDiff = b.pointsFavour - b.pointsAgainst;
 
-      return bPointsDiff - aPointsDiff;
-    }
+        return bPointsDiff - aPointsDiff;
+      }
 
-    return bMatchesDiff - aMatchesDiff;
-  });
+      return bMatchesDiff - aMatchesDiff;
+    })
+    .slice(0, 8);
 
 export const getRankingPosition = (playerId: number, players: Player[]) => {
   const ranking = getRankingTopPlayers(players);

@@ -1,4 +1,3 @@
-import { apiService } from '@/shared/infra/apiService';
 import { withNavbar } from '../components/hoc/withNavbar';
 import { RecordMatch } from '../components/organisms/RecordMatch/RecordMatch';
 import { MainContainer } from '../components/ui/MainContainer';

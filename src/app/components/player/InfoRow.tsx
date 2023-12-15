@@ -8,8 +8,8 @@ interface Props {
 export const InfoRow: FC<Props> = ({ text, value }) => {
   return (
     <div className="p-4 bg-white rounded-2xl flex items-center justify-between">
-      <p className="opacity-50">{text}</p>
-      <p className="text-lg font-bold">{value}</p>
+      <p className="opacity-50 text-black">{text}</p>
+      <p className="text-lg font-bold text-black">{value}</p>
     </div>
   );
 };
