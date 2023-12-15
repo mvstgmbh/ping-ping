@@ -65,6 +65,18 @@ export const getRankingTopPlayers = (players: Player[]) =>
     })
     .slice(0, 8);
 
+export const getTopStreak = (players: Player[]) =>
+  players
+    ?.sort((a, b) => {
+      // if player has no matches, put him at the bottom
+      if (a.matchesWon + a.matchesLost === 0) {
+        return 1;
+      }
+      // check win streak
+      return b.winStreak - a.winStreak;
+    })
+    ?.slice(0, 8);
+
 export const getRankingPosition = (playerId: number, players: Player[]) => {
   const ranking = getRankingTopPlayers(players);
 
