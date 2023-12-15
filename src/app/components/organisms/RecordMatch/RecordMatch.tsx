@@ -1,12 +1,13 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Player } from '../../../../player/domain/Player';
 import { ChoosePlayers } from './steps/ChoosePlayers';
 import { Record } from './steps/Record';
 import { SearchPlayer } from './steps/SearchPlayer';
 import { SetScores } from './steps/SetScores';
+import { apiService } from '@/shared/infra/apiService';
 
 export enum Steps {
   Record = 'record',
@@ -20,13 +21,20 @@ type Props = {
   players: Player[];
 };
 
-export const RecordMatch = ({ players }: Props) => {
+export const RecordMatch = () => {
   const { push } = useRouter();
   const [currentStep, setCurrentStep] = useState(Steps.Record);
+  const [players, setPlayers] = useState<Player[]>([]);
 
   const [previousStep, setPreviousStep] = useState<Steps>();
   const [playerOne, setPlayerOne] = useState<Player>();
   const [playerTwo, setPlayerTwo] = useState<Player>();
+
+  useEffect(() => {
+    apiService.get('/player').then((response) => {
+      setPlayers(response.data);
+    });
+  }, []);
 
   const handleNextStep = (stepName: Steps) => {
     setCurrentStep(stepName);
